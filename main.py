@@ -4,9 +4,14 @@ import os
 import cv2
 import numpy as np
 import pandas as pd
+from scipy.io import loadmat
 from generate_label import generate_label
 from spxy_image import spxy_image
 from spxy import spxy
+
+def load_hyperspectral_data(file_path):
+    data = loadmat(file_path)
+    return data['data'], data['target']
 
 def main():
     current_file_path = os.path.abspath(__file__)
@@ -15,15 +20,11 @@ def main():
     # Assuming that the hyperspectral image data is stored in Indian_pines_corrected.mat
     # and the corresponding ground truth labels are stored in Indian_pines_gt.mat
 
-    # Load hyperspectral image data
-    from spectral import open_image
-    img = open_image(os.path.join('data', 'Indian_pines_corrected.mat')).load()
+    # Load hyperspectral image data using scipy.io
+    hyperspectral_data, gt_labels = load_hyperspectral_data(os.path.join('data', 'Indian_pines_corrected.mat'))
 
     # Flatten the data
-    x = img.reshape((-1, img.shape[-1]))
-
-    # Load ground truth labels
-    gt_labels = open_image(os.path.join('data', 'Indian_pines_gt.mat')).load().flatten()
+    x = hyperspectral_data.reshape((-1, hyperspectral_data.shape[-1]))
 
     # Generate indices for spxy function
     indexx = np.arange(1, len(gt_labels) + 1)
