@@ -5,7 +5,7 @@ import numpy as np
 import pandas as pd
 from scipy.io import loadmat
 from generate_label import generate_label
-from spxy_image import spxy_image 
+from spxy_image import spxy_image
 from spxy import spxy
 
 def load_hyperspectral_data(file_path):
