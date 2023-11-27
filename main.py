@@ -13,7 +13,7 @@ def load_hyperspectral_data(file_path):
     return data['data'], data['target']
 
 def main():
-    current_file_path = os.path.join(os.getcwd(), 'main.py') 
+    current_file_path = os.path.abspath("__file__")  
     print(current_file_path)
 
     # Assuming that the hyperspectral image data is stored in Indian_pines_corrected.mat
