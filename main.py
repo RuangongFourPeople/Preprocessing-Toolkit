@@ -1,4 +1,6 @@
 # main.py
+# 本意是通过在colab上直接运行main.py，调用其他操作，依次处理高光谱图像数据集
+# 但是对python不熟悉，具体的文件路径问题也没有弄清楚，各种找不到文件报错
 
 import os
 import numpy as np
